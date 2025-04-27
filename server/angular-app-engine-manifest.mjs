@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/',
+  basePath: '/todo-frontend',
   supportedLocales: {
   "en-US": ""
 },
