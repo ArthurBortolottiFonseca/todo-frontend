@@ -1,0 +1,36 @@
+<div style="max-width: 500px; margin: 40px auto; padding: 24px; background: #f5f5f5; border-radius: 12px; box-shadow: 0 2px 8px #0001;">
+  <h1 style="color: #1976d2; font-family: Arial, sans-serif; margin-bottom: 20px; text-align: center;">
+    TODOapp - Nome: Arthur Bortolotti Fonseca | RA: 242764
+  </h1>
+
+  <form (submit)="criarTarefa()" style="display: flex; gap: 8px; margin-bottom: 24px;">
+    <input type="text" [(ngModel)]="novaDescricao" name="descricao" placeholder="Nova tarefa" required
+      style="flex: 1; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+    <button type="submit" style="padding: 8px 16px; background: #1976d2; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+      Adicionar
+    </button>
+  </form>
+
+  <ul style="list-style: none; padding: 0;">
+    <li *ngFor="let tarefa of arrayDeTarefas" style="background: #fff; margin-bottom: 10px; padding: 12px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 4px #0001;">
+      <span>
+        <span [style.textDecoration]="tarefa.statusRealizada ? 'line-through' : 'none'">
+          {{ tarefa.descricao }}
+        </span>
+        <span style="margin-left: 12px; color: #888;">
+          ({{ tarefa.statusRealizada ? 'Feita' : 'Pendente' }})
+        </span>
+      </span>
+      <span>
+        <button (click)="marcarComoFeita(tarefa)" [disabled]="tarefa.statusRealizada"
+          style="margin-right: 8px; padding: 4px 10px; background: #43a047; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+          Marcar como feita
+        </button>
+        <button (click)="excluirTarefa(tarefa)"
+          style="padding: 4px 10px; background: #e53935; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+          Excluir
+        </button>
+      </span>
+    </li>
+  </ul>
+</div>
