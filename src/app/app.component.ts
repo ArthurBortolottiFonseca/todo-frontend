@@ -25,15 +25,24 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.READ_tarefas();
-  }
+  console.log('ngOnInit executado');
+  this.READ_tarefas();
+}
 
-  READ_tarefas() {
-    this.http.get<Tarefa[]>(`${this.apiURL}/getAll`)
-      .subscribe(tarefas => {
+READ_tarefas() {
+  console.log('Chamando a API...');
+  this.http.get<Tarefa[]>(`${this.apiURL}/getAll`)
+    .subscribe({
+      next: tarefas => {
+        console.log('Tarefas recebidas:', tarefas);
         this.arrayDeTarefas = tarefas;
-      });
-  }
+      },
+      error: err => {
+        console.error('Erro ao carregar tarefas:', err);
+      }
+    });
+}
+
 
   criarTarefa() {
     if (!this.novaDescricao.trim()) return;
